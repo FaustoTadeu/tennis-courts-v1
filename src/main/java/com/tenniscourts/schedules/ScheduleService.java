@@ -12,7 +12,7 @@ public class ScheduleService {
 
     private final ScheduleRepository scheduleRepository;
 
-    private final ScheduleMapper scheduleMapper;
+    private final ScheduleMapperImpl scheduleMapper;
 
     public ScheduleDTO addSchedule(Long tennisCourtId, CreateScheduleRequestDTO createScheduleRequestDTO) {
         //TODO: implement addSchedule

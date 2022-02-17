@@ -13,7 +13,7 @@ public class TennisCourtService {
 
     private final ScheduleService scheduleService;
 
-    private final TennisCourtMapper tennisCourtMapper;
+    private final TennisCourtMapperImpl tennisCourtMapper;
 
     public TennisCourtDTO addTennisCourt(TennisCourtDTO tennisCourt) {
         return tennisCourtMapper.map(tennisCourtRepository.saveAndFlush(tennisCourtMapper.map(tennisCourt)));

@@ -5,11 +5,11 @@ import com.tenniscourts.reservations.Reservation;
 import com.tenniscourts.tenniscourts.TennisCourt;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-
+import lombok.ToString;
+import lombok.experimental.SuperBuilder;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -22,15 +22,18 @@ import java.util.List;
 
 @Entity
 @Table
-@Getter
-@Setter
+@EqualsAndHashCode(callSuper = true)
+@ToString
+@SuperBuilder
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = true, exclude = "reservations")
+@Data
 public class Schedule extends BaseEntity<Long> {
 
-    @ManyToOne
+	private static final long serialVersionUID = 1L;
+
+	@ManyToOne
     @NotNull
     private TennisCourt tennisCourt;
 
