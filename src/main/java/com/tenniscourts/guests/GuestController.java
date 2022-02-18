@@ -9,9 +9,6 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
 import java.util.List;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -26,8 +23,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/guest")
 @AllArgsConstructor
 @Api(tags= {"Guest"})
-@Produces({ MediaType.APPLICATION_JSON })
-@Consumes({ MediaType.APPLICATION_JSON })
 public class GuestController extends BaseRestController {
 
 	@Autowired

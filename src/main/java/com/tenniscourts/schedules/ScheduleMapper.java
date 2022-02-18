@@ -10,4 +10,6 @@ public interface ScheduleMapper {
     ScheduleDTO map(Schedule source);
 
     List<ScheduleDTO> map(List<Schedule> source);
+    
+    public ScheduleDTO mapFindById(Schedule schedule);
 }

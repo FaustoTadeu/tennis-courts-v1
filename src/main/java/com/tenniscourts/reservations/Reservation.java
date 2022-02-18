@@ -3,7 +3,6 @@ package com.tenniscourts.reservations;
 import com.tenniscourts.config.persistence.BaseEntity;
 import com.tenniscourts.guests.Guest;
 import com.tenniscourts.schedules.Schedule;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
