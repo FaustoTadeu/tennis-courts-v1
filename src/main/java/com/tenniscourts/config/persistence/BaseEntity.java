@@ -4,9 +4,9 @@ import com.tenniscourts.audit.CustomAuditEntityListener;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
-
 import javax.persistence.Column;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
@@ -16,6 +16,7 @@ import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+@SuperBuilder
 @MappedSuperclass
 @Getter
 @Setter
@@ -23,7 +24,10 @@ import java.time.LocalDateTime;
 @EntityListeners(CustomAuditEntityListener.class)
 public class BaseEntity<ID> implements Serializable {
 
-    @Id
+   
+	private static final long serialVersionUID = 1L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private ID id;
 
@@ -46,5 +50,9 @@ public class BaseEntity<ID> implements Serializable {
     @Column
     @CreatedDate
     private LocalDateTime dateCreate;
+    
+    public BaseEntity() {
+    	
+    }
 
 }

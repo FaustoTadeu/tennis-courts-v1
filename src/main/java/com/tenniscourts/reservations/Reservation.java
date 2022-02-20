@@ -5,11 +5,11 @@ import com.tenniscourts.guests.Guest;
 import com.tenniscourts.schedules.Schedule;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-
+import lombok.ToString;
+import lombok.experimental.SuperBuilder;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -20,15 +20,18 @@ import java.math.BigDecimal;
 
 @Entity
 @Table
-@Getter
-@Setter
+@EqualsAndHashCode(callSuper = true)
+@ToString
+@SuperBuilder
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = true)
-@Builder
+@Data
 public class Reservation extends BaseEntity<Long> {
 
-    @OneToOne
+	private static final long serialVersionUID = 1L;
+
+	@OneToOne
     private Guest guest;
 
     @ManyToOne
@@ -39,7 +42,7 @@ public class Reservation extends BaseEntity<Long> {
     private BigDecimal value;
 
     @NotNull
-    private ReservationStatus reservationStatus = ReservationStatus.READY_TO_PLAY;
+    private ReservationStatus reservationStatus;
 
     private BigDecimal refundValue;
 }

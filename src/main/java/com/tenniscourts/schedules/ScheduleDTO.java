@@ -1,29 +1,28 @@
 package com.tenniscourts.schedules;
 
 import com.tenniscourts.tenniscourts.TennisCourtDTO;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.Getter;
-import lombok.Setter;
 
-import javax.validation.constraints.NotNull;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Builder;
+import lombok.Data;
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
+@Data
+@Builder
+@ApiModel(value = "ScheduleDTO", description = "Object with schedule data.")
 public class ScheduleDTO {
 
+	@ApiModelProperty(value = "Id of schedule.")
     private Long id;
 
+	@ApiModelProperty(value = "Tennis court related to a schedule.")
     private TennisCourtDTO tennisCourt;
-
-    @NotNull
-    private Long tennisCourtId;
-
-    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm")
-    @NotNull
+    
+	@ApiModelProperty(value = "Start date of schedule.")
     private LocalDateTime startDateTime;
 
-    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm")
+	@ApiModelProperty(value = "End date of schedule.")
     private LocalDateTime endDateTime;
 
 }
