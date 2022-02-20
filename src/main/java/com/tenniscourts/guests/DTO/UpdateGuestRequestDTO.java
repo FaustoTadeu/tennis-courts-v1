@@ -2,6 +2,7 @@ package com.tenniscourts.guests.DTO;
 
 import javax.validation.constraints.NotNull;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,6 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Builder
+@ApiModel(value = "UpdateGuestRequestDTO", description = "Object with updated guest data.")
 public class UpdateGuestRequestDTO {
 	
 	 @NotNull(message = "Guest id cannot be null")

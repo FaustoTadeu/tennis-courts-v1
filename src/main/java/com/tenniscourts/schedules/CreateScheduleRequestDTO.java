@@ -11,11 +11,11 @@ import java.time.LocalDateTime;
 public class CreateScheduleRequestDTO {
 
 	@NotNull(message = "Tennis court id cannot be null")
-	 @ApiModelProperty(value = "Id of a tennis court to create a schedule. Cannot be null", required = true)
+	@ApiModelProperty(value = "Id of a tennis court to create a schedule. Cannot be null", required = true)
     private Long tennisCourtId;
 
 	@NotNull(message = "Start date time name cannot be null")
-	 @ApiModelProperty(value = "Start date time to create a schedule. Cannot be null.", required = true)
+	@ApiModelProperty(value = "Start date time to create a schedule. Cannot be null.", required = true)
     private LocalDateTime startDateTime;
 
 }

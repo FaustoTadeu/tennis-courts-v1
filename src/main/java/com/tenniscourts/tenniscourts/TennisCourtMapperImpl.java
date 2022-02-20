@@ -17,7 +17,7 @@ public class TennisCourtMapperImpl implements TennisCourtMapper {
 	private ScheduleRepository scheduleRepository;
 	
 	@Override
-	public TennisCourtDTO map(TennisCourt tennisCourt) {
+	public TennisCourtDTO mapWithSchedule(TennisCourt tennisCourt) {
 		
 		List<Schedule> schedules = scheduleRepository.findByTennisCourt_IdOrderByStartDateTime(tennisCourt.getId());
 		List<ScheduleDTO> schedulesDTO = new ArrayList<>();
@@ -26,11 +26,9 @@ public class TennisCourtMapperImpl implements TennisCourtMapper {
 		   schedulesDTO.add(
 		   	   ScheduleDTO.builder()
 			   .id(sc.getId())
-			   .tennisCourt(TennisCourtDTO.builder()
-			       .id(tennisCourt.getId())
-				   .name(tennisCourt.getName())
-				   .build()
-			    ).build()
+			   .startDateTime(sc.getStartDateTime())
+			   .endDateTime(sc.getEndDateTime())
+			   .build()
 		    );
 	   });
 		return TennisCourtDTO.builder()
@@ -38,11 +36,19 @@ public class TennisCourtMapperImpl implements TennisCourtMapper {
 		.tennisCourtSchedules(schedulesDTO)
 		.build();
 	}
+	
+	@Override
+	public TennisCourtDTO map(TennisCourt tennisCourt) {
+		return TennisCourtDTO.builder()
+		.name(tennisCourt.getName())
+		.build();
+	}
 
 	@Override
-	public TennisCourt map(TennisCourtDTO source) {
-		// TODO Auto-generated method stub
-		return null;
+	public TennisCourt map(TennisCourtDTO tennisCourtDto) {
+		return TennisCourt.builder()
+				.name(tennisCourtDto.getName())
+				.build();
 	}
 	
 }

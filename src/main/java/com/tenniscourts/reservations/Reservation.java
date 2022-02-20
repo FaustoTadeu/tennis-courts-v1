@@ -42,7 +42,7 @@ public class Reservation extends BaseEntity<Long> {
     private BigDecimal value;
 
     @NotNull
-    private ReservationStatus reservationStatus = ReservationStatus.READY_TO_PLAY;
+    private ReservationStatus reservationStatus;
 
     private BigDecimal refundValue;
 }

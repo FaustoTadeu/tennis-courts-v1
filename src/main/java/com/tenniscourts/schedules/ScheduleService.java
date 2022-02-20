@@ -25,8 +25,17 @@ public class ScheduleService {
 	@Autowired
     private TennisCourtRepository tennisCourtRepository;
 
+	@Autowired
     private final ScheduleMapperImpl scheduleMapper;
 
+    
+    /**
+	  * Method used to add a schedule
+	  *
+	  * @param Long tennisCourtId
+	  * @param CreateScheduleRequestDTO createScheduleRequestDTO
+	  * @return ReservationDTO
+	  */
     public Schedule addSchedule(Long tennisCourtId, CreateScheduleRequestDTO createScheduleRequestDTO) {
        Optional<TennisCourt> tennisCourt = tennisCourtRepository.findById(tennisCourtId);
        if(tennisCourt.isPresent()) {
@@ -43,16 +52,35 @@ public class ScheduleService {
        }
     }
 
+    /**
+	  * Method used to find a schedule by dates.
+	  *
+	  * @param LocalDateTime startDate
+	  * @param LocalDateTime endDate
+	  * @return List ScheduleDTO 
+	  */
     public List<ScheduleDTO> findSchedulesByDates(LocalDateTime startDate, LocalDateTime endDate) {
         return scheduleMapper.map(scheduleRepository.findAllByStartDateTimeBetween(startDate, endDate));
     }
 
+    /**
+	  * Method used to find a schedule by id
+	  *
+	  * @param Long scheduleId
+	  * @return ReservationDTO
+	  */
     public ScheduleDTO findScheduleById(Long scheduleId) {
     	 return scheduleRepository.findById(scheduleId).map(scheduleMapper::mapFindById).orElseThrow(() -> {
 	         throw new EntityNotFoundException("Schedule not found. scheduleId: " + scheduleId);
 	     });
     }
 
+    /**
+	  * Method used to find a schedule by tennis court 
+	  *
+	  * @param Long tennisCourtId
+	  * @return List ScheduleDTO
+	  */
     public List<ScheduleDTO> findSchedulesByTennisCourtId(Long tennisCourtId) {
         return scheduleMapper.map(scheduleRepository.findByTennisCourt_IdOrderByStartDateTime(tennisCourtId));
     }
